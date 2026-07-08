@@ -3,67 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sphère AR — 1 m</title>
+<title>Hémisphère ISO 3744 — r = 1 m</title>
 <style>
-  :root{
-    --bg:#101418; --panel:#1a2027; --ink:#e8edf2; --dim:#8a97a5; --accent:#2f7bff;
-  }
-  *{box-sizing:border-box; margin:0}
-  body{
-    background:var(--bg); color:var(--ink);
-    font:16px/1.5 -apple-system, "SF Pro Text", system-ui, sans-serif;
-    min-height:100svh; display:grid; place-items:center; padding:24px;
-  }
-  main{max-width:420px; width:100%; text-align:center}
-  .badge{
-    font:600 12px/1 ui-monospace, "SF Mono", monospace; letter-spacing:.14em;
-    color:var(--dim); text-transform:uppercase;
-  }
-  h1{font-size:28px; font-weight:700; margin:10px 0 6px}
-  p.sub{color:var(--dim); font-size:14px; margin-bottom:28px}
-  a.ar{
-    display:block; text-decoration:none; background:var(--panel);
-    border:1px solid #2a333d; border-radius:16px; padding:28px 20px;
-  }
-  a.ar svg{display:block; margin:0 auto 14px}
-  a.ar .cta{
-    display:inline-block; background:var(--accent); color:#fff;
-    font-weight:600; font-size:15px; padding:12px 22px; border-radius:10px;
-  }
-  a.ar .hint{display:block; color:var(--dim); font-size:13px; margin-top:12px}
-  .steps{margin-top:26px; text-align:left; color:var(--dim); font-size:13px}
-  .steps li{margin:6px 0 6px 18px}
-  .warn{margin-top:18px; font-size:12px; color:#6b7784}
+  :root{--bg:#101418;--panel:#1a2027;--ink:#e8edf2;--dim:#8a97a5;--accent:#2f7bff;--mic:#e33c3c}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);
+    font:16px/1.5 -apple-system,"SF Pro Text",system-ui,sans-serif;
+    min-height:100svh;display:grid;place-items:center;padding:24px}
+  main{max-width:440px;width:100%;text-align:center}
+  .badge{font:600 12px/1 ui-monospace,"SF Mono",monospace;letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+  h1{font-size:26px;font-weight:700;margin:10px 0 6px}
+  p.sub{color:var(--dim);font-size:14px;margin-bottom:26px}
+  a.ar{display:block;text-decoration:none;background:var(--panel);border:1px solid #2a333d;border-radius:16px;padding:26px 20px}
+  a.ar svg{display:block;margin:0 auto 14px}
+  a.ar .cta{display:inline-block;background:var(--accent);color:#fff;font-weight:600;font-size:15px;padding:12px 22px;border-radius:10px}
+  a.ar .hint{display:block;color:var(--dim);font-size:13px;margin-top:12px}
+  .gestures{display:flex;gap:10px;margin-top:16px}
+  .gestures div{flex:1;background:var(--panel);border:1px solid #2a333d;border-radius:12px;padding:12px 8px;font-size:12px;color:var(--dim)}
+  .gestures strong{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+  .warn{margin-top:16px;font-size:12px;color:#6b7784}
 </style>
 </head>
 <body>
 <main>
-  <div class="badge">ARKit · Quick Look</div>
-  <h1>Sphère de 1 m au sol</h1>
-  <p class="sub">Échelle réelle verrouillée — l'objet reste ancré quand tu te déplaces.</p>
+  <div class="badge">ISO 3744 · Antenne 10 microphones</div>
+  <h1>Hémisphère de mesure r = 1 m</h1>
+  <p class="sub">Surface de mesure hémisphérique avec les 10 positions microphoniques clés, numérotées. Échelle réelle verrouillée.</p>
 
-  <!-- rel="ar" : Safari ouvre AR Quick Look directement.
-       #allowsContentScaling=0 : interdit le pincement, la sphère reste à 1 m exactement. -->
   <a class="ar" rel="ar" href="sphere.usdz#allowsContentScaling=0">
-    <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
-      <circle cx="36" cy="32" r="20" fill="none" stroke="#2f7bff" stroke-width="2"/>
-      <ellipse cx="36" cy="32" rx="20" ry="7" fill="none" stroke="#2f7bff" stroke-width="1" opacity=".5"/>
-      <line x1="10" y1="58" x2="62" y2="58" stroke="#8a97a5" stroke-width="1.5"/>
-      <line x1="10" y1="54" x2="10" y2="62" stroke="#8a97a5" stroke-width="1.5"/>
-      <line x1="62" y1="54" x2="62" y2="62" stroke="#8a97a5" stroke-width="1.5"/>
-      <text x="36" y="69" text-anchor="middle" fill="#8a97a5" font-size="9" font-family="ui-monospace, monospace">1,00 m</text>
+    <svg width="90" height="66" viewBox="0 0 90 66" aria-hidden="true">
+      <path d="M13 52 A32 32 0 0 1 77 52" fill="none" stroke="#2f7bff" stroke-width="2"/>
+      <path d="M13 52 A32 10 0 0 0 77 52" fill="none" stroke="#2f7bff" stroke-width="1" opacity=".5"/>
+      <path d="M22 38 A24 7 0 0 0 68 38" fill="none" stroke="#2f7bff" stroke-width="1" opacity=".4"/>
+      <path d="M33 27 A13 4 0 0 0 57 27" fill="none" stroke="#2f7bff" stroke-width="1" opacity=".4"/>
+      <circle cx="20" cy="46" r="3" fill="#e33c3c"/><circle cx="70" cy="46" r="3" fill="#e33c3c"/>
+      <circle cx="30" cy="34" r="3" fill="#e33c3c"/><circle cx="62" cy="34" r="3" fill="#e33c3c"/>
+      <circle cx="45" cy="20" r="3" fill="#e33c3c"/>
+      <line x1="8" y1="60" x2="82" y2="60" stroke="#8a97a5" stroke-width="1.5"/>
     </svg>
-    <span class="cta">Placer la sphère en AR</span>
+    <span class="cta">Placer l'hémisphère en AR</span>
     <span class="hint">Ouvre l'appareil photo en réalité augmentée</span>
   </a>
 
-  <ol class="steps">
-    <li>Ouvre cette page dans <strong>Safari</strong> sur iPhone.</li>
-    <li>Touche le bouton, puis balaye lentement le sol avec la caméra.</li>
-    <li>Quand la sphère apparaît, touche l'écran pour la poser : elle reste fixe.</li>
-  </ol>
+  <div class="gestures">
+    <div><strong>Poser</strong>Balaye le sol, touche l'écran</div>
+    <div><strong>Déplacer</strong>Glisse avec un doigt</div>
+    <div><strong>Tourner</strong>Pivote avec deux doigts</div>
+  </div>
 
-  <p class="warn">Sans LiDAR ni marqueur : ARKit ancre l'objet par suivi visuel-inertiel (iPhone 6s ou plus récent, iOS 12+).</p>
+  <p class="warn">Positions micro : anneaux z/r = 0,15 · 0,45 · 0,75 + sommet. Grille alignée sur les anneaux de mesure. Sans LiDAR ni marqueur (ARKit, iPhone 6s+, Safari).</p>
 </main>
 </body>
 </html>
