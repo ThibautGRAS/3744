@@ -96,14 +96,9 @@
 
   <div class="options">
     <div class="opt">
-      <div class="opt-txt"><strong>Fils à plomb + marquage au sol</strong>
-      <span>Verticale sous chaque micro et pastille à marquer au sol</span></div>
-      <button class="sw" id="swP" role="switch" aria-checked="false" onclick="tog(this)"><span class="knob"></span></button>
-    </div>
-    <div class="opt">
-      <div class="opt-txt"><strong>Hauteurs sur étiquettes</strong>
-      <span>Réglage du pied de micro lisible sur chaque point</span></div>
-      <button class="sw" id="swH" role="switch" aria-checked="false" onclick="tog(this)"><span class="knob"></span></button>
+      <div class="opt-txt"><strong>Mode technicien</strong>
+      <span>Fils à plomb, pastilles à marquer au sol et hauteurs de micro sur les étiquettes</span></div>
+      <button class="sw" id="swT" role="switch" aria-checked="false" onclick="tog(this)"><span class="knob"></span></button>
     </div>
   </div>
 
@@ -168,9 +163,8 @@ function tog(el){
   apply();
 }
 function apply(){
-  var p = document.getElementById('swP').getAttribute('aria-checked')==='true';
-  var h = document.getElementById('swH').getAttribute('aria-checked')==='true';
-  var suf = (p||h) ? '-' + (p?'p':'') + (h?'h':'') : '';
+  var t = document.getElementById('swT').getAttribute('aria-checked')==='true';
+  var suf = t ? '-ph' : '';
   document.querySelectorAll('a.cfg[data-base]').forEach(function(a){
     a.setAttribute('href', a.dataset.base + suf + '.usdz#allowsContentScaling=0');
   });
