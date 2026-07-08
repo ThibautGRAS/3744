@@ -140,8 +140,8 @@
     // ---------- Démarrage (geste utilisateur requis iOS) ----------
     document.getElementById('startBtn').addEventListener('click', async () => {
       try {
+        await requestOrientationPermission(); // DOIT être en 1er dans le geste (contrainte iOS)
         await startCamera();
-        await requestOrientationPermission();
         document.getElementById('start').style.display = 'none';
         hud.classList.add('show');
         initThree();
