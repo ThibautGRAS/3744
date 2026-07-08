@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Demi-sphère ISO 3744 — AR</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { min-height: 100%; background: #0b0d12; color: #e8ecf3; font-family: -apple-system, system-ui, sans-serif; }
+    .wrap { max-width: 460px; margin: 0 auto; padding: 40px 24px calc(40px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 18px; }
+    h1 { font-size: 24px; font-weight: 700; text-align: center; }
+    .sub { text-align: center; color: #9aa4b2; font-size: 14px; line-height: 1.5; margin-bottom: 6px; }
+    a.card {
+      display: block; text-decoration: none; color: inherit;
+      background: #151b26; border: 1px solid #232c3c; border-radius: 16px; padding: 20px;
+      transition: border-color .15s;
+    }
+    a.card:active { border-color: #2f6df6; }
+    .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+    .card h2 .tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 8px; }
+    .tag.best { background: #12401f; color: #6ee787; }
+    .tag.simple { background: #3a3116; color: #f0c674; }
+    .card p { font-size: 13px; color: #9aa4b2; line-height: 1.5; }
+    .foot { font-size: 12px; color: #66707e; text-align: center; margin-top: 6px; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Demi-sphère ISO 3744</h1>
+    <p class="sub">Visualisation AR des 10 positions micro (rayon 1&nbsp;m) sur le sol. Choisis un mode.</p>
+
+    <a class="card" href="ar-marker.html">
+      <h2>Mode marqueur <span class="tag best">ancrage fixe</span></h2>
+      <p>Pose un marqueur imprimé au sol : la demi-sphère reste fixe dans l'espace même quand tu te déplaces autour. Le marqueur = le point de référence au sol.</p>
+    </a>
+
+    <a class="card" href="sans-marqueur.html">
+      <h2>Mode sans marqueur <span class="tag simple">rapide</span></h2>
+      <p>Aucun marqueur à imprimer. Tu vises le sol et tapes l'écran pour poser le centre. Reste stable quand tu tournes sur toi-même, mais dérive si tu marches (limite iOS sans LiDAR).</p>
+    </a>
+
+    <p class="foot">iPhone : ouvre cette page dans <b>Safari</b> (HTTPS requis pour la caméra et les capteurs).<br>Mode marqueur : imprime le marqueur « Hiro » (voir README).</p>
+  </div>
+</body>
+</html>
