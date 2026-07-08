@@ -53,14 +53,7 @@
     transition:transform .08s ease, box-shadow .08s ease;
   }
   a.cfg:active{transform:translateY(1px); box-shadow:0 1px 3px rgba(0,30,80,.10)}
-  a.cfg .dot{
-    flex:none; width:40px; height:40px; border-radius:4px;
-    display:grid; place-items:center; font-weight:700; font-size:14px;
-    font-variant-numeric:tabular-nums; color:var(--white); background:var(--navy);
-  }
-  a.cfg .dot.key{background:var(--red)}
-  a.cfg .dot.ext{background:var(--chart-orange)}
-  a.cfg .dot.box{background:var(--chart-blue)}
+  a.cfg img.dot{flex:none;width:40px;height:40px;border-radius:4px;display:block}
   a.cfg .txt{flex:1; min-width:0}
   a.cfg .txt strong{display:block; font-size:15px; font-weight:700}
   a.cfg .txt span{display:block; color:#4a5a75; font-size:12.5px; margin-top:1px}
@@ -104,13 +97,13 @@
 
   <h2>Hémisphère r = 1 m — Table B.2 · large bande</h2>
   <a class="cfg" rel="ar" data-base="hemi-b2-10" href="hemi-b2-10.usdz#allowsContentScaling=0">
-    <span class="dot key">10</span>
+    <img class="dot" src="badge-10.png" alt="10">
     <span class="txt"><strong>Antenne clé — 10 positions</strong>
     <span>Positions 1–10 · anneaux z/r = 0,15 · 0,45 · 0,75 + sommet</span></span>
     <span class="go">›</span>
   </a>
   <a class="cfg" rel="ar" data-base="hemi-b2-20" href="hemi-b2-20.usdz#allowsContentScaling=0">
-    <span class="dot ext">20</span>
+    <img class="dot" src="badge-20.png" alt="20">
     <span class="txt"><strong>Antenne étendue — 20 positions</strong>
     <span>+ positions 11–20 · le sommet porte 10 et 20</span></span>
     <span class="go">›</span>
@@ -118,13 +111,13 @@
 
   <h2>Hémisphère r = 1 m — Table B.1 · toutes sources</h2>
   <a class="cfg" rel="ar" data-base="hemi-b1-10" href="hemi-b1-10.usdz#allowsContentScaling=0">
-    <span class="dot key">10</span>
+    <img class="dot" src="badge-10.png" alt="10">
     <span class="txt"><strong>Antenne clé — 10 positions</strong>
     <span>Répartition anti-interférences · sources tonales incluses</span></span>
     <span class="go">›</span>
   </a>
   <a class="cfg" rel="ar" data-base="hemi-b1-20" href="hemi-b1-20.usdz#allowsContentScaling=0">
-    <span class="dot ext">20</span>
+    <img class="dot" src="badge-20.png" alt="20">
     <span class="txt"><strong>Antenne étendue — 20 positions</strong>
     <span>+ positions 11–20</span></span>
     <span class="go">›</span>
@@ -132,7 +125,7 @@
 
   <h2>Parallélépipède — Annexe C</h2>
   <a class="cfg" rel="ar" data-base="para-9" href="para-9.usdz#allowsContentScaling=0">
-    <span class="dot box">9</span>
+    <img class="dot" src="badge-9.png" alt="9">
     <span class="txt"><strong>9 positions clés — petite machine</strong>
     <span>Boîte réf. 1×1×1 m · d = 1 m · surface 3×3×2 m</span></span>
     <span class="go">›</span>
@@ -155,7 +148,7 @@
     <span>Détecté et utilisé automatiquement si l'appareil en dispose (iPhone Pro, iPad Pro) : pose du plan instantanée, ancrage renforcé et occlusion des objets réels. Sur les autres iPhone, le suivi caméra + centrale inertielle reste pleinement fonctionnel.</span>
   </div>
 
-  <p class="warn">Ouvrir dans Safari (iPhone 6s+, sans LiDAR ni marqueur). Coordonnées : ISO 3744:2010, Tables B.1, B.2 et Annexe C.</p>
+  <p class="warn">Ouvrir impérativement dans Safari ou Chrome iOS (pas depuis Teams, Outlook ou LinkedIn : leurs navigateurs intégrés affichent le fichier brut). Coordonnées : ISO 3744:2010, Tables B.1, B.2 et Annexe C.</p>
 </main>
 <script>
 function tog(el){
