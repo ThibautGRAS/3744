@@ -3,7 +3,21 @@
 Appli web (Safari iPhone, HTTPS) qui affiche les **10 positions micro de la demi-sphère ISO 3744**
 (rayon 1 m réglable, coordonnées normalisées `x/r, y/r, z/r`) en réalité augmentée sur le sol.
 
-Ouvre `index.html` → choix entre deux modes.
+Ouvre `index.html` → choix du mode.
+
+## Mode AR natif (`markerless.html`) — RECOMMANDÉ, sans marqueur ni QR ni LiDAR
+
+La voie la plus solide sur iPhone. On règle rayon + rotation dans un aperçu 3D web, puis
+Safari lance **AR Quick Look** : le moteur **ARKit natif** détecte le sol tout seul
+(tracking visuel-inertiel markerless, sans LiDAR sur tout iPhone récent), ancre la
+demi-sphère dans l'espace et reste fixe pendant qu'on marche autour. Échelle réelle 1:1.
+
+Technique : trois.js construit la scène paramétrique, `USDZExporter` génère un fichier
+`.usdz` à la volée côté client, servi via `<a rel="ar">` (Blob `model/vnd.usdz+zip`,
+zoom verrouillé par `#allowsContentScaling=0`). 100 % gratuit, aucune dépendance tierce.
+Limite : on ne peut pas déplacer les sliders *pendant* la vue AR (réglages faits avant).
+Choix validé par recherche multi-sources (WebXR absent d'iOS Safari ; SLAM JS trop
+instable et sans échelle métrique fiable).
 
 ## Mode marqueur (`ar-marker.html`) — ancrage fixe
 

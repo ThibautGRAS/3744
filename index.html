@@ -18,7 +18,8 @@
     a.card:active { border-color: #2f6df6; }
     .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
     .card h2 .tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 8px; }
-    .tag.best { background: #12401f; color: #6ee787; }
+    .tag.reco { background: #12401f; color: #6ee787; }
+    .tag.best { background: #16324a; color: #6ec7f7; }
     .tag.simple { background: #3a3116; color: #f0c674; }
     .card p { font-size: 13px; color: #9aa4b2; line-height: 1.5; }
     .foot { font-size: 12px; color: #66707e; text-align: center; margin-top: 6px; line-height: 1.5; }
@@ -29,22 +30,27 @@
     <h1>Demi-sphère ISO 3744</h1>
     <p class="sub">Visualisation AR des 10 positions micro (rayon 1&nbsp;m) sur le sol. Choisis un mode.</p>
 
+    <a class="card" href="markerless.html">
+      <h2>Mode AR natif <span class="tag reco">recommandé · sans rien</span></h2>
+      <p>Sans marqueur, sans QR, sans LiDAR. Tu règles rayon et rotation dans l'aperçu 3D, puis iPhone lance l'AR native (ARKit) : le sol est détecté automatiquement, la demi-sphère s'ancre dans l'espace et reste fixe pendant que tu marches autour. Échelle réelle 1:1.</p>
+    </a>
+
     <a class="card" href="qr-mode.html">
       <h2>Mode QR code <span class="tag best">ancrage fixe</span></h2>
-      <p>Pose n'importe quel QR code à plat au sol. La caméra le détecte automatiquement et ancre la demi-sphère dessus : elle reste fixe quand tu te déplaces (tant que le QR est visible). Renseigne la taille imprimée du QR.</p>
+      <p>Pose n'importe quel QR code à plat au sol. La caméra le détecte et ancre la demi-sphère dessus. Utile si tu veux ancrer sur un point précis matérialisé.</p>
     </a>
 
     <a class="card" href="ar-marker.html">
       <h2>Mode marqueur Hiro <span class="tag best">ancrage fixe</span></h2>
-      <p>Variante avec le marqueur AR standard « Hiro » imprimé. Alternative au QR si la détection QR n'est pas assez stable.</p>
+      <p>Variante avec le marqueur AR standard « Hiro » imprimé. Alternative au QR.</p>
     </a>
 
     <a class="card" href="sans-marqueur.html">
       <h2>Mode sans marqueur <span class="tag simple">rapide</span></h2>
-      <p>Aucun marqueur à imprimer. Tu vises le sol et tapes l'écran pour poser le centre. Reste stable quand tu tournes sur toi-même, mais dérive si tu marches (limite iOS sans LiDAR).</p>
+      <p>Overlay par capteurs d'orientation. Stable en rotation sur place, mais dérive si tu marches (limite iOS). Dépannage rapide.</p>
     </a>
 
-    <p class="foot">iPhone : ouvre cette page dans <b>Safari</b> (HTTPS requis pour la caméra et les capteurs).<br>Mode marqueur : imprime le marqueur « Hiro » (voir README).</p>
+    <p class="foot">iPhone : ouvre cette page dans <b>Safari</b> (HTTPS requis).<br>Mode AR natif : nécessite un iPhone compatible ARKit (tous les modèles récents, LiDAR non requis).</p>
   </div>
 </body>
 </html>
