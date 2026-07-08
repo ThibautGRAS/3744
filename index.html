@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Demi-sphère ISO 3744 — AR</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html, body { min-height: 100%; background: #0b0d12; color: #e8ecf3; font-family: -apple-system, system-ui, sans-serif; }
-    .wrap { max-width: 460px; margin: 0 auto; padding: 40px 24px calc(40px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 18px; }
-    h1 { font-size: 24px; font-weight: 700; text-align: center; }
-    .sub { text-align: center; color: #9aa4b2; font-size: 14px; line-height: 1.5; margin-bottom: 6px; }
-    a.card {
-      display: block; text-decoration: none; color: inherit;
-      background: #151b26; border: 1px solid #232c3c; border-radius: 16px; padding: 20px;
-      transition: border-color .15s;
-    }
-    a.card:active { border-color: #2f6df6; }
-    .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-    .card h2 .tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; vertical-align: middle; margin-left: 8px; }
-    .tag.reco { background: #12401f; color: #6ee787; }
-    .tag.best { background: #16324a; color: #6ec7f7; }
-    .tag.simple { background: #3a3116; color: #f0c674; }
-    .card p { font-size: 13px; color: #9aa4b2; line-height: 1.5; }
-    .foot { font-size: 12px; color: #66707e; text-align: center; margin-top: 6px; line-height: 1.5; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sphère AR — 1 m</title>
+<style>
+  :root{
+    --bg:#101418; --panel:#1a2027; --ink:#e8edf2; --dim:#8a97a5; --accent:#2f7bff;
+  }
+  *{box-sizing:border-box; margin:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:16px/1.5 -apple-system, "SF Pro Text", system-ui, sans-serif;
+    min-height:100svh; display:grid; place-items:center; padding:24px;
+  }
+  main{max-width:420px; width:100%; text-align:center}
+  .badge{
+    font:600 12px/1 ui-monospace, "SF Mono", monospace; letter-spacing:.14em;
+    color:var(--dim); text-transform:uppercase;
+  }
+  h1{font-size:28px; font-weight:700; margin:10px 0 6px}
+  p.sub{color:var(--dim); font-size:14px; margin-bottom:28px}
+  a.ar{
+    display:block; text-decoration:none; background:var(--panel);
+    border:1px solid #2a333d; border-radius:16px; padding:28px 20px;
+  }
+  a.ar svg{display:block; margin:0 auto 14px}
+  a.ar .cta{
+    display:inline-block; background:var(--accent); color:#fff;
+    font-weight:600; font-size:15px; padding:12px 22px; border-radius:10px;
+  }
+  a.ar .hint{display:block; color:var(--dim); font-size:13px; margin-top:12px}
+  .steps{margin-top:26px; text-align:left; color:var(--dim); font-size:13px}
+  .steps li{margin:6px 0 6px 18px}
+  .warn{margin-top:18px; font-size:12px; color:#6b7784}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Demi-sphère ISO 3744</h1>
-    <p class="sub">Visualisation AR des 10 positions micro (rayon 1&nbsp;m) sur le sol. Choisis un mode.</p>
+<main>
+  <div class="badge">ARKit · Quick Look</div>
+  <h1>Sphère de 1 m au sol</h1>
+  <p class="sub">Échelle réelle verrouillée — l'objet reste ancré quand tu te déplaces.</p>
 
-    <a class="card" href="markerless.html">
-      <h2>Mode AR natif <span class="tag reco">recommandé · sans rien</span></h2>
-      <p>Sans marqueur, sans QR, sans LiDAR. Tu règles rayon et rotation dans l'aperçu 3D, puis iPhone lance l'AR native (ARKit) : le sol est détecté automatiquement, la demi-sphère s'ancre dans l'espace et reste fixe pendant que tu marches autour. Échelle réelle 1:1.</p>
-    </a>
+  <!-- rel="ar" : Safari ouvre AR Quick Look directement.
+       #allowsContentScaling=0 : interdit le pincement, la sphère reste à 1 m exactement. -->
+  <a class="ar" rel="ar" href="sphere.usdz#allowsContentScaling=0">
+    <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
+      <circle cx="36" cy="32" r="20" fill="none" stroke="#2f7bff" stroke-width="2"/>
+      <ellipse cx="36" cy="32" rx="20" ry="7" fill="none" stroke="#2f7bff" stroke-width="1" opacity=".5"/>
+      <line x1="10" y1="58" x2="62" y2="58" stroke="#8a97a5" stroke-width="1.5"/>
+      <line x1="10" y1="54" x2="10" y2="62" stroke="#8a97a5" stroke-width="1.5"/>
+      <line x1="62" y1="54" x2="62" y2="62" stroke="#8a97a5" stroke-width="1.5"/>
+      <text x="36" y="69" text-anchor="middle" fill="#8a97a5" font-size="9" font-family="ui-monospace, monospace">1,00 m</text>
+    </svg>
+    <span class="cta">Placer la sphère en AR</span>
+    <span class="hint">Ouvre l'appareil photo en réalité augmentée</span>
+  </a>
 
-    <a class="card" href="qr-mode.html">
-      <h2>Mode QR code <span class="tag best">ancrage fixe</span></h2>
-      <p>Pose n'importe quel QR code à plat au sol. La caméra le détecte et ancre la demi-sphère dessus. Utile si tu veux ancrer sur un point précis matérialisé.</p>
-    </a>
+  <ol class="steps">
+    <li>Ouvre cette page dans <strong>Safari</strong> sur iPhone.</li>
+    <li>Touche le bouton, puis balaye lentement le sol avec la caméra.</li>
+    <li>Quand la sphère apparaît, touche l'écran pour la poser : elle reste fixe.</li>
+  </ol>
 
-    <a class="card" href="ar-marker.html">
-      <h2>Mode marqueur Hiro <span class="tag best">ancrage fixe</span></h2>
-      <p>Variante avec le marqueur AR standard « Hiro » imprimé. Alternative au QR.</p>
-    </a>
-
-    <a class="card" href="sans-marqueur.html">
-      <h2>Mode sans marqueur <span class="tag simple">rapide</span></h2>
-      <p>Overlay par capteurs d'orientation. Stable en rotation sur place, mais dérive si tu marches (limite iOS). Dépannage rapide.</p>
-    </a>
-
-    <p class="foot">iPhone : ouvre cette page dans <b>Safari</b> (HTTPS requis).<br>Mode AR natif : nécessite un iPhone compatible ARKit (tous les modèles récents, LiDAR non requis).</p>
-  </div>
+  <p class="warn">Sans LiDAR ni marqueur : ARKit ancre l'objet par suivi visuel-inertiel (iPhone 6s ou plus récent, iOS 12+).</p>
+</main>
 </body>
 </html>
