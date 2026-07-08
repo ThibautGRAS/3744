@@ -22,6 +22,19 @@
   }
   header img{height:34px; width:auto; display:block}
   main{max-width:480px; width:100%; padding:24px 20px 0}
+  .options{background:var(--white); border:2px solid var(--navy); border-radius:4px;
+    box-shadow:0 2px 6px rgba(0,30,80,.10); margin-bottom:6px}
+  .opt{display:flex; align-items:center; gap:12px; padding:12px 15px}
+  .opt + .opt{border-top:1px solid var(--grey)}
+  .opt-txt{flex:1; min-width:0}
+  .opt-txt strong{display:block; font-size:14px; font-weight:700}
+  .opt-txt span{display:block; color:#4a5a75; font-size:12px; margin-top:1px}
+  .sw{flex:none; width:51px; height:31px; border-radius:16px; border:none; padding:2px;
+    background:var(--grey); position:relative; cursor:pointer; transition:background .12s ease}
+  .sw .knob{display:block; width:27px; height:27px; border-radius:50%; background:var(--white);
+    box-shadow:0 1px 3px rgba(0,30,80,.35); transition:transform .12s ease}
+  .sw[aria-checked="true"]{background:var(--red)}
+  .sw[aria-checked="true"] .knob{transform:translateX(20px)}
   .eyebrow{
     font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
     color:var(--red);
@@ -81,14 +94,27 @@
   <h1>Surfaces de mesure acoustique</h1>
   <p class="sub">Antennes microphoniques à l'échelle réelle, ancrées au sol. Chaque configuration ouvre directement la caméra — échelle verrouillée.</p>
 
+  <div class="options">
+    <div class="opt">
+      <div class="opt-txt"><strong>Fils à plomb + marquage au sol</strong>
+      <span>Verticale sous chaque micro et pastille à marquer au sol</span></div>
+      <button class="sw" id="swP" role="switch" aria-checked="false" onclick="tog(this)"><span class="knob"></span></button>
+    </div>
+    <div class="opt">
+      <div class="opt-txt"><strong>Hauteurs sur étiquettes</strong>
+      <span>Réglage du pied de micro lisible sur chaque point</span></div>
+      <button class="sw" id="swH" role="switch" aria-checked="false" onclick="tog(this)"><span class="knob"></span></button>
+    </div>
+  </div>
+
   <h2>Hémisphère r = 1 m — Table B.2 · large bande</h2>
-  <a class="cfg" rel="ar" href="hemi-b2-10.usdz#allowsContentScaling=0">
+  <a class="cfg" rel="ar" data-base="hemi-b2-10" href="hemi-b2-10.usdz#allowsContentScaling=0">
     <span class="dot key">10</span>
     <span class="txt"><strong>Antenne clé — 10 positions</strong>
     <span>Positions 1–10 · anneaux z/r = 0,15 · 0,45 · 0,75 + sommet</span></span>
     <span class="go">›</span>
   </a>
-  <a class="cfg" rel="ar" href="hemi-b2-20.usdz#allowsContentScaling=0">
+  <a class="cfg" rel="ar" data-base="hemi-b2-20" href="hemi-b2-20.usdz#allowsContentScaling=0">
     <span class="dot ext">20</span>
     <span class="txt"><strong>Antenne étendue — 20 positions</strong>
     <span>+ positions 11–20 · le sommet porte 10 et 20</span></span>
@@ -96,13 +122,13 @@
   </a>
 
   <h2>Hémisphère r = 1 m — Table B.1 · toutes sources</h2>
-  <a class="cfg" rel="ar" href="hemi-b1-10.usdz#allowsContentScaling=0">
+  <a class="cfg" rel="ar" data-base="hemi-b1-10" href="hemi-b1-10.usdz#allowsContentScaling=0">
     <span class="dot key">10</span>
     <span class="txt"><strong>Antenne clé — 10 positions</strong>
     <span>Répartition anti-interférences · sources tonales incluses</span></span>
     <span class="go">›</span>
   </a>
-  <a class="cfg" rel="ar" href="hemi-b1-20.usdz#allowsContentScaling=0">
+  <a class="cfg" rel="ar" data-base="hemi-b1-20" href="hemi-b1-20.usdz#allowsContentScaling=0">
     <span class="dot ext">20</span>
     <span class="txt"><strong>Antenne étendue — 20 positions</strong>
     <span>+ positions 11–20</span></span>
@@ -110,7 +136,7 @@
   </a>
 
   <h2>Parallélépipède — Annexe C</h2>
-  <a class="cfg" rel="ar" href="para-9.usdz#allowsContentScaling=0">
+  <a class="cfg" rel="ar" data-base="para-9" href="para-9.usdz#allowsContentScaling=0">
     <span class="dot box">9</span>
     <span class="txt"><strong>9 positions clés — petite machine</strong>
     <span>Boîte réf. 1×1×1 m · d = 1 m · surface 3×3×2 m</span></span>
@@ -136,5 +162,20 @@
 
   <p class="warn">Ouvrir dans Safari (iPhone 6s+, sans LiDAR ni marqueur). Coordonnées : ISO 3744:2010, Tables B.1, B.2 et Annexe C.</p>
 </main>
+<script>
+function tog(el){
+  el.setAttribute('aria-checked', el.getAttribute('aria-checked')==='true' ? 'false' : 'true');
+  apply();
+}
+function apply(){
+  var p = document.getElementById('swP').getAttribute('aria-checked')==='true';
+  var h = document.getElementById('swH').getAttribute('aria-checked')==='true';
+  var suf = (p||h) ? '-' + (p?'p':'') + (h?'h':'') : '';
+  document.querySelectorAll('a.cfg[data-base]').forEach(function(a){
+    a.setAttribute('href', a.dataset.base + suf + '.usdz#allowsContentScaling=0');
+  });
+}
+apply();
+</script>
 </body>
 </html>
