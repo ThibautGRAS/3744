@@ -28,9 +28,9 @@ Deux interrupteurs combinables sélectionnent la variante USDZ via un suffixe de
 | off | on | `-a` | modèle verrouillé sur la cible imprimée, gestes désactivés |
 | on | on | `-pha` | les deux |
 
-Fichiers : `hemi-{b1,b2}-{10,20}[-suffixe].usdz`, `para-9[-suffixe].usdz`.
+Fichiers : `usdz/hemi-{b1,b2}-{10,20}[-suffixe].usdz`, `usdz/para-9[-suffixe].usdz`.
 
-**Cible d'ancrage** (`cible-ancrage.pdf`, visible quand l'interrupteur ancrage est actif) :
+**Cible d'ancrage** (`assets/cible-ancrage.pdf`, visible quand l'interrupteur ancrage est actif) :
 imprimer en A4 à **100 %** — vérifier **160 mm au réglet** ; la croix = centre de la source.
 Poser la feuille au centre de la zone et la viser avec la caméra : zéro dérive, position répétable.
 
@@ -42,4 +42,10 @@ Poser la feuille au centre de la zone et la viser avec la caméra : zéro dériv
 
 ## Déploiement
 
-Site statique (GitHub Pages) — HTTPS obligatoire. `index.html` à la racine, aucun build, aucune dépendance.
+Site statique (GitHub Pages) — HTTPS obligatoire. Aucun build, aucune dépendance.
+
+```
+index.html   page unique
+usdz/        modèles 3D pré-générés (24 variantes)
+assets/      badges, logo CETIM, cible d'ancrage PDF
+```
