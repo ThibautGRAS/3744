@@ -1,41 +1,45 @@
-# Demi-sphère ISO 3744 — visualisation AR
+# Surfaces de mesure ISO 3744 — visualisation AR · CETIM
 
-Appli web (Safari iPhone, HTTPS) qui affiche les **10 positions micro de la demi-sphère ISO 3744**
-(rayon 1 m réglable, coordonnées normalisées `x/r, y/r, z/r`) en réalité augmentée sur le sol.
+Appli web (iPhone, Safari ou Chrome iOS, HTTPS) qui affiche en réalité augmentée, **à l'échelle réelle 1:1**, les antennes microphoniques de l'**ISO 3744:2010** :
 
-Ouvre `index.html` → choix du mode.
+- **Hémisphère r = 1 m — Table B.2** (large bande) : antenne clé 10 positions, antenne étendue 20 positions
+- **Hémisphère r = 1 m — Table B.1** (toutes sources, anti-interférences) : 10 et 20 positions
+- **Parallélépipède — Annexe C** : 9 positions clés (boîte réf. 1×1×1 m, d = 1 m, surface 3×3×2 m)
 
-## Mode AR natif (`markerless.html`) — RECOMMANDÉ, sans marqueur ni QR ni LiDAR
+## Fonctionnement
 
-La voie la plus solide sur iPhone. On règle rayon + rotation dans un aperçu 3D web, puis
-Safari lance **AR Quick Look** : le moteur **ARKit natif** détecte le sol tout seul
-(tracking visuel-inertiel markerless, sans LiDAR sur tout iPhone récent), ancre la
-demi-sphère dans l'espace et reste fixe pendant qu'on marche autour. Échelle réelle 1:1.
+`index.html` est la seule page : chaque configuration est un lien `<a rel="ar">` vers un fichier
+**USDZ pré-généré**, ouvert directement dans **AR Quick Look** (ARKit natif — détection du sol
+markerless, sans LiDAR requis ; LiDAR utilisé automatiquement s'il est présent). Le modèle
+s'ouvre à l'échelle 1:1 et reste **redimensionnable au pincement** (le verrou
+`#allowsContentScaling=0` a été retiré pour permettre l'ouverture directe en caméra sur Safari).
 
-Technique : trois.js construit la scène paramétrique, `USDZExporter` génère un fichier
-`.usdz` à la volée côté client, servi via `<a rel="ar">` (Blob `model/vnd.usdz+zip`,
-zoom verrouillé par `#allowsContentScaling=0`). 100 % gratuit, aucune dépendance tierce.
-Limite : on ne peut pas déplacer les sliders *pendant* la vue AR (réglages faits avant).
-Choix validé par recherche multi-sources (WebXR absent d'iOS Safari ; SLAM JS trop
-instable et sans échelle métrique fiable).
+Choix technique validé par recherche multi-sources : WebXR est absent d'iOS Safari et le SLAM
+JavaScript est trop instable sans échelle métrique fiable → AR Quick Look est la seule voie robuste.
 
-## Mode marqueur (`ar-marker.html`) — ancrage fixe
+## Options (interrupteurs de la page)
 
-La caméra reconnaît un **marqueur imprimé** posé au sol et y ancre la demi-sphère.
-Elle reste fixe dans l'espace **même quand tu te déplaces**, tant que le marqueur est visible.
+Deux interrupteurs combinables sélectionnent la variante USDZ via un suffixe de fichier :
 
-À faire : imprime le marqueur **Hiro** (motif standard AR.js) et pose-le au centre de la zone.
-Marqueur à imprimer : https://raw.githack.com/AR-js-org/AR.js/master/data/images/hiro.png
-(ou cherche « AR.js Hiro marker pattern » — imprimer sur une feuille A4, à plat).
+| Technicien | Ancrage cible | Suffixe | Contenu |
+|---|---|---|---|
+| off | off | *(aucun)* | modèle de base |
+| on | off | `-ph` | fils à plomb, pastilles à marquer au sol, hauteurs micro sur étiquettes |
+| off | on | `-a` | modèle verrouillé sur la cible imprimée, gestes désactivés |
+| on | on | `-pha` | les deux |
 
-Le centre du marqueur = point de référence au sol (centre de la demi-sphère).
+Fichiers : `hemi-{b1,b2}-{10,20}[-suffixe].usdz`, `para-9[-suffixe].usdz`.
 
-## Mode sans marqueur (`sans-marqueur.html`) — rapide
+**Cible d'ancrage** (`cible-ancrage.pdf`, visible quand l'interrupteur ancrage est actif) :
+imprimer en A4 à **100 %** — vérifier **160 mm au réglet** ; la croix = centre de la source.
+Poser la feuille au centre de la zone et la viser avec la caméra : zéro dérive, position répétable.
 
-Aucun marqueur. Vise le sol, tape l'écran pour poser le centre. Renseigne la hauteur du
-téléphone pour caler le plan du sol. Stable en rotation, **dérive si tu marches**
-(limite d'iOS Safari : pas de WebXR ni d'accès LiDAR en web).
+## Pièges connus
+
+- Ne pas ouvrir les liens depuis **Teams, Outlook ou LinkedIn** : leurs navigateurs intégrés
+  affichent le fichier USDZ brut au lieu de lancer AR Quick Look. Safari ou Chrome iOS uniquement.
+- Impression de la cible : l'option « ajuster à la page » fausse l'échelle → toujours 100 %.
 
 ## Déploiement
 
-GitHub Pages ou Netlify (HTTPS obligatoire pour caméra + capteurs). `index.html` à la racine.
+Site statique (GitHub Pages) — HTTPS obligatoire. `index.html` à la racine, aucun build, aucune dépendance.
